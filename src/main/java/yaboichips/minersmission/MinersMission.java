@@ -28,6 +28,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import org.slf4j.Logger;
+import software.bernie.geckolib3.GeckoLib;
 
 import static yaboichips.minersmission.core.MBiomes.BIOMES;
 import static yaboichips.minersmission.core.MBlocks.BLOCKS;
@@ -54,6 +55,7 @@ public class MinersMission {
 
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
+        GeckoLib.initialize();
     }
 
     public static ResourceLocation createLocation(String id) {

@@ -9,4 +9,6 @@ import static yaboichips.minersmission.MinersMission.MODID;
 public class MBlocks {
     // Create a Deferred Register to hold Blocks which will all be registered under the "minersmission" namespace
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, MODID);
+
+
 }

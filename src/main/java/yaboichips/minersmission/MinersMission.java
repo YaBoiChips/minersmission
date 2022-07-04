@@ -2,9 +2,13 @@ package yaboichips.minersmission;
 
 import com.mojang.logging.LogUtils;
 import net.minecraft.client.Minecraft;
+import net.minecraft.core.Registry;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -25,12 +29,16 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import org.slf4j.Logger;
 
+import static yaboichips.minersmission.core.MBiomes.BIOMES;
 import static yaboichips.minersmission.core.MBlocks.BLOCKS;
 import static yaboichips.minersmission.core.MItems.ITEMS;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(MinersMission.MODID)
 public class MinersMission {
+
+    public static ResourceKey<Level> MINERS_WORLD;
+
 
     // Define mod id in a common place for everything to reference
     public static final String MODID = "minersmission";
@@ -42,14 +50,19 @@ public class MinersMission {
         // Register the Deferred Register to the mod event bus so blocks get registered
         BLOCKS.register(modEventBus);
         ITEMS.register(modEventBus);
+        BIOMES.register(modEventBus);
 
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
     }
 
+    public static ResourceLocation createLocation(String id) {
+        return new ResourceLocation(MODID, id);
+    }
+
     private void commonSetup(final FMLCommonSetupEvent event) {
-        LOGGER.info("HELLO FROM COMMON SETUP");
-        LOGGER.info("DIRT BLOCK >> {}", ForgeRegistries.BLOCKS.getKey(Blocks.DIRT));
+//        ModNoiseSettings.registerNoise();
+        MINERS_WORLD = ResourceKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation(MODID, "minersworld"));
     }
 
     // You can use SubscribeEvent and let the Event Bus discover methods to call

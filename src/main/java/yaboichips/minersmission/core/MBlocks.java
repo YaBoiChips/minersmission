@@ -29,6 +29,6 @@ public class MBlocks {
     }
 
     public static RegistryObject<Block> registerOreBlock(String id) {
-        return registerBlock(id, new Block(BlockBehaviour.Properties.copy(Blocks.DIAMOND_ORE)));
+        return BLOCKS.register(id, () -> new Block(BlockBehaviour.Properties.copy(Blocks.DIAMOND_ORE)));
     }
 }

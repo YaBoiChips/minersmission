@@ -21,9 +21,6 @@ public class MBlocks {
     public static final RegistryObject<Block> ONYX_ORE = registerOreBlock("onyx_ore"); //feeds you
     public static final RegistryObject<Block> PYRITE_ORE = registerOreBlock("pyrite_ore");
     public static final RegistryObject<Block> THALLIUM_ORE = registerOreBlock("thallium_ore");
-    public static final RegistryObject<Block> BAUXITE_ORE = registerOreBlock("bauxite_ore");
-    public static final RegistryObject<Block> TIN_ORE = registerOreBlock("tin_ore");
-
     public static RegistryObject<Block> registerBlock(String id, Block block) {
         return BLOCKS.register(id, () -> block);
     }

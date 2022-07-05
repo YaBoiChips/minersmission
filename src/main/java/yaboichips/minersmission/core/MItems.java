@@ -5,13 +5,15 @@ import net.minecraft.world.level.block.Block;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
+import yaboichips.minersmission.common.items.weapons.BattleAxeItem;
+import yaboichips.minersmission.common.items.weapons.WarHammer;
 
 import java.util.function.Supplier;
 
 import static yaboichips.minersmission.MinersMission.MODID;
 
 public class MItems {
-    public static CreativeModeTab TAB = new CreativeModeTab("miner") {
+    public static CreativeModeTab TAB = new CreativeModeTab("miner"){
         @Override
         public ItemStack makeIcon() {
             return Items.IRON_PICKAXE.getDefaultInstance();
@@ -28,6 +30,10 @@ public class MItems {
     public static final RegistryObject<Item> ONYX_ORE = createBlockItem(MBlocks.ONYX_ORE);
     public static final RegistryObject<Item> PYRITE_ORE = createBlockItem(MBlocks.PYRITE_ORE);
     public static final RegistryObject<Item> THALLIUM_ORE = createBlockItem(MBlocks.THALLIUM_ORE);
+
+    //weapons
+    public static final RegistryObject<Item> BATTLE_AXE = ITEMS.register("battle_axe", BattleAxeItem::new);
+    public static final RegistryObject<Item> WAR_HAMMER = ITEMS.register("war_hammer", WarHammer::new);
 
     public static <T extends Item> RegistryObject<Item> createBlockItem(Supplier<? extends T> item, RegistryObject<? extends Block> block) {
         return createItem(item, block.getId().getPath());

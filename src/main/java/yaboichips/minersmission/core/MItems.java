@@ -35,6 +35,10 @@ public class MItems {
     public static final RegistryObject<Item> BATTLE_AXE = ITEMS.register("battle_axe", BattleAxeItem::new);
     public static final RegistryObject<Item> WAR_HAMMER = ITEMS.register("war_hammer", WarHammer::new);
 
+    public static RegistryObject<Item> createSimpleItem(String id){
+        return createItem(() -> new Item(new Item.Properties().tab(TAB)), id);
+    }
+
     public static <T extends Item> RegistryObject<Item> createBlockItem(Supplier<? extends T> item, RegistryObject<? extends Block> block) {
         return createItem(item, block.getId().getPath());
     }

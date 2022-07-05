@@ -32,6 +32,13 @@ public class MItems {
     public static final RegistryObject<Item> THALLIUM_ORE = createBlockItem(MBlocks.THALLIUM_ORE);
 
     public static final RegistryObject<Item> RUBY = createSimpleItem("ruby");
+    public static final RegistryObject<Item> SAPPHIRE = createSimpleItem("sapphire");
+    public static final RegistryObject<Item> TOPAZ = createSimpleItem("topaz");
+    public static final RegistryObject<Item> OPAL = createSimpleItem("opal");
+    public static final RegistryObject<Item> AMBER = createSimpleItem("amber");
+    public static final RegistryObject<Item> ONYX = createSimpleItem("onyx");
+    public static final RegistryObject<Item> PYRITE = createSimpleItem("pyrite");
+    public static final RegistryObject<Item> THALLIUM_INGOT = createSimpleItem("thallium_ingot");
 
     //weapons
     public static final RegistryObject<Item> BATTLE_AXE = ITEMS.register("battle_axe", BattleAxeItem::new);

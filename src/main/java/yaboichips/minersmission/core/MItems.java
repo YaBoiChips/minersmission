@@ -31,6 +31,8 @@ public class MItems {
     public static final RegistryObject<Item> PYRITE_ORE = createBlockItem(MBlocks.PYRITE_ORE);
     public static final RegistryObject<Item> THALLIUM_ORE = createBlockItem(MBlocks.THALLIUM_ORE);
 
+    public static final RegistryObject<Item> RUBY = createSimpleItem("ruby");
+
     //weapons
     public static final RegistryObject<Item> BATTLE_AXE = ITEMS.register("battle_axe", BattleAxeItem::new);
     public static final RegistryObject<Item> WAR_HAMMER = ITEMS.register("war_hammer", WarHammer::new);

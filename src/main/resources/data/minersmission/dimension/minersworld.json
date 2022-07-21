@@ -1,9 +1,9 @@
 {
-  "type": "minecraft:overworld",
+  "type": "minersmission:minersworld",
   "generator": {
     "type": "minecraft:noise",
     "seed": -420986553,
-    "settings": "minecraft:overworld",
+    "settings": "minersmission:minersworld",
     "biome_source": {
       "type": "minecraft:fixed",
       "biome": "minersmission:minersworld"

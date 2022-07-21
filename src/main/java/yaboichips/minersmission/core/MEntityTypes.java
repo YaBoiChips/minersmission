@@ -7,6 +7,5 @@ import net.minecraftforge.registries.ForgeRegistries;
 import static yaboichips.minersmission.MinersMission.MODID;
 
 public class MEntityTypes {
-    public static final DeferredRegister<EntityType<?>> ENTITIES = DeferredRegister.create(ForgeRegistries.ENTITIES, MODID);
-
+    public static final DeferredRegister<EntityType<?>> ENTITIES = DeferredRegister.create(ForgeRegistries.ENTITY_TYPES, MODID);
 }

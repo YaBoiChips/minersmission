@@ -6,7 +6,9 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
+import yaboichips.minersmission.common.blocks.TeleporterBlock;
 
+import static yaboichips.minersmission.MinersMission.MINERS_WORLD;
 import static yaboichips.minersmission.MinersMission.MODID;
 
 public class MBlocks {
@@ -21,8 +23,15 @@ public class MBlocks {
     public static final RegistryObject<Block> ONYX_ORE = registerOreBlock("onyx_ore"); //feeds you
     public static final RegistryObject<Block> PYRITE_ORE = registerOreBlock("pyrite_ore");
     public static final RegistryObject<Block> THALLIUM_ORE = registerOreBlock("thallium_ore");
+
+    public static final RegistryObject<Block> TELEPORTER_BLOCK = registerTeleporter("teleporter_block");
+
     public static RegistryObject<Block> registerBlock(String id, Block block) {
         return BLOCKS.register(id, () -> block);
+    }
+
+    public static RegistryObject<Block> registerTeleporter(String id) {
+        return BLOCKS.register(id, () -> new TeleporterBlock(BlockBehaviour.Properties.copy(Blocks.OBSIDIAN), MINERS_WORLD));
     }
 
     public static RegistryObject<Block> registerOreBlock(String id) {

@@ -6,6 +6,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import yaboichips.minersmission.common.items.weapons.BattleAxeItem;
+import yaboichips.minersmission.common.items.weapons.TestItem;
 import yaboichips.minersmission.common.items.weapons.WarHammer;
 
 import java.util.function.Supplier;
@@ -43,6 +44,11 @@ public class MItems {
     //weapons
     public static final RegistryObject<Item> BATTLE_AXE = ITEMS.register("battle_axe", BattleAxeItem::new);
     public static final RegistryObject<Item> WAR_HAMMER = ITEMS.register("war_hammer", WarHammer::new);
+
+
+    public static final RegistryObject<Item> TEST_ITEM = ITEMS.register("test_item", TestItem::new);
+
+    public static final RegistryObject<Item> MINERS_KEY = createSimpleItem("miners_key");
 
     public static RegistryObject<Item> createSimpleItem(String id){
         return createItem(() -> new Item(new Item.Properties().tab(TAB)), id);

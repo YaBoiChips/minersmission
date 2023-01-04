@@ -11,10 +11,12 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
+import yaboichips.minersmission.core.MItems;
 
 import static yaboichips.minersmission.MinersMission.MINERS_WORLD;
 
@@ -36,14 +38,18 @@ public class TeleporterBlock extends Block {
         if (!worldIn.isClientSide) {
             ServerLevel world = worldIn.getServer().getLevel(MINERS_WORLD);
             ServerLevel overworld = worldIn.getServer().getLevel(overworldKey);
-            if (world != null) {
+            if (world != null && player.getItemInHand(handIn).is(MItems.MINERS_KEY.get())) {
                 if (player.level != world) {
                     sendPlayerToDimension((ServerPlayer) player, world, new Vec3(player.getX(), player.getY(), player.getZ()));
                     player.displayClientMessage(Component.translatable("mine.teleport.success"), true);
+                    world.setBlock(player.blockPosition(), Blocks.AIR.defaultBlockState(), 2);
+                    world.setBlock(player.blockPosition().above(), Blocks.AIR.defaultBlockState(), 2);
                     return InteractionResult.SUCCESS;
                 }else{
                     if (overworld != null) {
                         sendPlayerToDimension((ServerPlayer) player, overworld, new Vec3(player.getX(), player.getY(), player.getZ()));
+                        world.setBlock(player.blockPosition(), Blocks.AIR.defaultBlockState(), 2);
+                        world.setBlock(player.blockPosition().above(), Blocks.AIR.defaultBlockState(), 2);
                     }
                 }
             }
@@ -59,8 +65,18 @@ public class TeleporterBlock extends Block {
 
     public static void sendPlayerToDimension(ServerPlayer serverPlayer, ServerLevel targetWorld, Vec3 targetVec) {
         // ensure destination chunk is loaded before we put the player in it
-        ServerLevel world = targetWorld.getLevel();
         targetWorld.getChunk(new BlockPos(targetVec));
-            serverPlayer.teleportTo(targetWorld, targetVec.x(), targetWorld.getHeight(Heightmap.Types.MOTION_BLOCKING, (int) targetVec.x(), (int) targetVec.z()), targetVec.z(), serverPlayer.getYRot(), serverPlayer.getXRot());
+            serverPlayer.teleportTo(targetWorld, targetVec.x(), getYLevel(serverPlayer, targetWorld), targetVec.z(), serverPlayer.getYRot(), serverPlayer.getXRot());
+    }
+
+    public static double getYLevel(ServerPlayer serverPlayer, ServerLevel targetWorld){
+        BlockPos pos = serverPlayer.blockPosition();
+        while (!targetWorld.getBlockState(pos).isAir()) {
+            pos = pos.below();
+            if (targetWorld.getBlockState(pos).isAir() && !targetWorld.getBlockState(pos.below()).isAir()) {
+                return pos.getY();
+            }
+        }
+        return pos.getY();
     }
 }

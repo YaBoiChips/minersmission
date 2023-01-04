@@ -1,7 +1,6 @@
 package yaboichips.minersmission.events;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.player.Player;
@@ -44,12 +43,12 @@ public class MiningEvent {
         double d4 = player.getY();
         double d5 = player.getZ() + (player.getRandom().nextDouble() - 0.5D) * distance;
         blockpos$mutableblockpos.set(d3, d4, d5);
-
-        if (!world.getBlockState(blockpos$mutableblockpos).isAir()) {
-            blockpos$mutableblockpos.set(blockpos$mutableblockpos.above());
-        }
-        else if (world.getBlockState(blockpos$mutableblockpos.below()).isAir()) {
-            blockpos$mutableblockpos.set(blockpos$mutableblockpos.below());
+        BlockPos pos = blockpos$mutableblockpos;
+        while (!world.getBlockState(pos).isAir()) {
+            pos = pos.below();
+            if (world.getBlockState(pos).isAir() && !world.getBlockState(pos.below()).isAir()) {
+                blockpos$mutableblockpos.set(pos);
+            }
         }
         return blockpos$mutableblockpos;
     }

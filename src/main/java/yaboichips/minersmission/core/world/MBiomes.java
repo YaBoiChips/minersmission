@@ -1,4 +1,4 @@
-package yaboichips.minersmission.core;
+package yaboichips.minersmission.core.world;
 
 import net.minecraft.core.Registry;
 import net.minecraft.data.worldgen.Carvers;
@@ -23,6 +23,7 @@ public class MBiomes {
     public static Biome minersWorld() {
         MobSpawnSettings.Builder spawnSettings = new MobSpawnSettings.Builder();
         BiomeGenerationSettings.Builder generationSettings = new BiomeGenerationSettings.Builder();
+        generationSettings.addFeature(40, MPlacedFeatures.RED_CRYSTAL_SPIKE);
 
         generationSettings.addCarver(GenerationStep.Carving.AIR, Carvers.CAVE);
         return new Biome.BiomeBuilder().precipitation(Biome.Precipitation.SNOW).temperature(0.25F).downfall(0.5F).specialEffects((new BiomeSpecialEffects.Builder()).waterColor(4159204).skyColor(0).waterFogColor(329011).fogColor(12638463).ambientMoodSound(AmbientMoodSettings.LEGACY_CAVE_SETTINGS).build()).mobSpawnSettings(spawnSettings.build()).generationSettings(generationSettings.build()).build();

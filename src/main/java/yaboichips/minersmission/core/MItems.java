@@ -32,6 +32,8 @@ public class MItems {
     public static final RegistryObject<Item> PYRITE_ORE = createBlockItem(MBlocks.PYRITE_ORE);
     public static final RegistryObject<Item> THALLIUM_ORE = createBlockItem(MBlocks.THALLIUM_ORE);
 
+    public static final RegistryObject<Item> TELEPORTER_BLOCK = createBlockItem(MBlocks.TELEPORTER_BLOCK);
+
     public static final RegistryObject<Item> RUBY = createSimpleItem("ruby");
     public static final RegistryObject<Item> SAPPHIRE = createSimpleItem("sapphire");
     public static final RegistryObject<Item> TOPAZ = createSimpleItem("topaz");

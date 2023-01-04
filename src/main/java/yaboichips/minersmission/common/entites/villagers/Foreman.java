@@ -1,10 +1,8 @@
 package yaboichips.minersmission.common.entites.villagers;
 
-import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.Packet;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.server.players.OldUsersConverter;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
@@ -16,7 +14,6 @@ import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
 import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
-import net.minecraft.world.entity.ai.goal.RandomStrollGoal;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.npc.Npc;
 import net.minecraft.world.entity.player.Player;
@@ -45,6 +42,7 @@ public class Foreman extends PathfinderMob implements Npc, Merchant {
     public Foreman(EntityType<? extends PathfinderMob> p_21683_, Level p_21684_) {
         super(p_21683_, p_21684_);
     }
+
     public List<UUID> hired = new ArrayList<>();
 
     @Override
@@ -63,13 +61,13 @@ public class Foreman extends PathfinderMob implements Npc, Merchant {
     @Override
     public void readAdditionalSaveData(CompoundTag tag) {
         UUID uuid;
-        if (tag.hasUUID("Hired")){
+        if (tag.hasUUID("Hired")) {
             uuid = tag.getUUID("Hired");
-        }else {
+        } else {
             String s = tag.getString("Hired");
             uuid = OldUsersConverter.convertMobOwnerIfNecessary(this.getServer(), s);
         }
-        if (uuid != null){
+        if (uuid != null) {
             setHired(uuid);
         }
         if (tag.contains("Offers", 10)) {
@@ -118,11 +116,11 @@ public class Foreman extends PathfinderMob implements Npc, Merchant {
     }
 
 
-    public boolean isHired(UUID player){
+    public boolean isHired(UUID player) {
         return hired.contains(player);
     }
 
-    public void setHired(UUID player){
+    public void setHired(UUID player) {
         hired.add(player);
     }
 

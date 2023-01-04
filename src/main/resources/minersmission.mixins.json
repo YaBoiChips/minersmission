@@ -5,7 +5,7 @@
   "compatibilityLevel": "JAVA_8",
   "refmap": "minersmission.refmap.json",
   "mixins": [
-    "common.PlayerDataMixin"
+    "common.PlayerMixin"
   ],
   "client": [
   ],

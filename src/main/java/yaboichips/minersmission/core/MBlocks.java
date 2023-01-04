@@ -1,8 +1,11 @@
 package yaboichips.minersmission.core;
 
+import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.material.Material;
+import net.minecraft.world.level.material.MaterialColor;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
@@ -24,10 +27,19 @@ public class MBlocks {
     public static final RegistryObject<Block> PYRITE_ORE = registerOreBlock("pyrite_ore");
     public static final RegistryObject<Block> THALLIUM_ORE = registerOreBlock("thallium_ore");
 
+    public static final RegistryObject<Block> BLUE_CRYSTAL = registerCrystal("blue_crystal", DyeColor.BLUE);
+    public static final RegistryObject<Block> RED_CRYSTAL = registerCrystal("red_crystal", DyeColor.RED);
+    public static final RegistryObject<Block> YELLOW_CRYSTAL = registerCrystal("yellow_crystal", DyeColor.YELLOW);
+    public static final RegistryObject<Block> GREEN_CRYSTAL = registerCrystal("green_crystal", DyeColor.GREEN);
+
     public static final RegistryObject<Block> TELEPORTER_BLOCK = registerTeleporter("teleporter_block");
 
     public static RegistryObject<Block> registerBlock(String id, Block block) {
         return BLOCKS.register(id, () -> block);
+    }
+
+    public static RegistryObject<Block> registerCrystal(String id, DyeColor color){
+        return BLOCKS.register(id, () -> new Block(BlockBehaviour.Properties.of(Material.AMETHYST, color)));
     }
 
     public static RegistryObject<Block> registerTeleporter(String id) {
